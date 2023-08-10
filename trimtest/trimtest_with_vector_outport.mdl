@@ -1,0 +1,859 @@
+Model {
+  Name			  "trimtest_with_vector_outport"
+  Version		  2.20
+  SimParamPage		  "WorkspaceI/O"
+  SampleTimeColors	  off
+  InvariantConstants	  off
+  WideVectorLines	  on
+  ShowLineWidths	  off
+  StartTime		  "0.0"
+  StopTime		  "20"
+  Solver		  ode45
+  RelTol		  "1e-3"
+  AbsTol		  "1e-6"
+  Refine		  "1"
+  MaxStep		  "auto"
+  InitialStep		  "auto"
+  FixedStep		  "auto"
+  MaxOrder		  5
+  OutputOption		  RefineOutputTimes
+  OutputTimes		  "[]"
+  LoadExternalInput	  on
+  ExternalInput		  "[0 0 0 0 0 0 0 0 0]"
+  SaveTime		  on
+  TimeSaveName		  "tout"
+  SaveState		  off
+  StateSaveName		  "xout"
+  SaveOutput		  on
+  OutputSaveName	  "yout"
+  LoadInitialState	  on
+  InitialState		  "[0;0;0;0;0;0;0;0;0;0;0;0;0;0]"
+  SaveFinalState	  off
+  FinalStateName	  "xFinal"
+  LimitMaxRows		  off
+  MaxRows		  "1000"
+  Decimation		  "1"
+  AlgebraicLoopMsg	  warning
+  MinStepSizeMsg	  warning
+  UnconnectedInputMsg	  warning
+  UnconnectedOutputMsg	  warning
+  UnconnectedLineMsg	  warning
+  ConsistencyChecking	  off
+  ZeroCross		  on
+  SimulationMode	  normal
+  RTWSystemTargetFile	  "grt.tlc"
+  RTWInlineParameters	  off
+  RTWPlaceOutputsASAP	  off
+  RTWRetainRTWFile	  off
+  RTWTemplateMakefile	  "grt_vc.tmf"
+  RTWMakeCommand	  "make_rtw"
+  RTWGenerateCodeOnly	  off
+  ExtModeMexFile	  "ext_comm"
+  ExtModeBatchMode	  off
+  CloseFcn		  ";slview('closediagram',bdroot);"
+  StartFcn		  "rand; global x_tr"
+  BlockDefaults {
+    Orientation		    right
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    NamePlacement	    normal
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+    ShowName		    on
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    center
+    VerticalAlignment	    middle
+    ForegroundColor	    black
+    BackgroundColor	    white
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    normal
+    FontAngle		    normal
+  }
+  System {
+    Name		    "trimtest_with_vector_outport"
+    Location		    [21, 92, 586, 702]
+    Open		    on
+    ToolBar		    on
+    StatusBar		    on
+    ScreenColor		    white
+    PaperOrientation	    landscape
+    PaperPositionMode	    auto
+    PaperType		    usletter
+    PaperUnits		    inches
+    Block {
+      BlockType		      Inport
+      Name		      "Transfer Function inport"
+      Position		      [110, 28, 140, 42]
+      Port		      "1"
+      PortWidth		      "-1"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "Zero-Pole inport\n(looooooooooooooooooooooooooo"
+"ng\nversion)"
+      Position		      [110, 98, 140, 112]
+      Port		      "2"
+      PortWidth		      "-1"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "State-Space inport"
+      Position		      [110, 168, 140, 182]
+      Port		      "3"
+      PortWidth		      "-1"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "Single integrators inport"
+      Position		      [110, 238, 140, 252]
+      Port		      "4"
+      PortWidth		      "-1"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "Vector integrator inport"
+      Position		      [110, 308, 140, 322]
+      Port		      "5"
+      PortWidth		      "-1"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "S-Function inport"
+      Position		      [110, 378, 140, 392]
+      Port		      "6"
+      PortWidth		      "-1"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "Nonlinear pendulum inport 1"
+      Position		      [110, 453, 140, 467]
+      Port		      "7"
+      PortWidth		      "-1"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Name		      "Nonlinear pendulum inport 2"
+      Position		      [110, 498, 140, 512]
+      Port		      "8"
+      PortWidth		      "-1"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux"
+      Ports		      [2, 1, 0, 0, 0]
+      Position		      [395, 436, 435, 529]
+      Inputs		      "2"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Nonlinear \npendulum"
+      Ports		      [2, 2, 0, 0, 0]
+      Position		      [245, 435, 335, 530]
+      ShowPortLabels	      on
+      System {
+	Name			"Nonlinear \npendulum"
+	Location		[108, 215, 699, 438]
+	Open			off
+	ToolBar			off
+	StatusBar		off
+	ScreenColor		white
+	PaperOrientation	landscape
+	PaperPositionMode	auto
+	PaperType		usletter
+	PaperUnits		inches
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [35, 48, 65, 62]
+	  NamePlacement		  alternate
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "In2"
+	  Position		  [35, 68, 65, 82]
+	  Port			  "2"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain"
+	  Position		  [360, 58, 415, 92]
+	  Gain			  "180/pi"
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "Position\nnonlinear"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [245, 59, 275, 91]
+	  ExternalReset		  none
+	  InitialConditionSource  internal
+	  InitialCondition	  "0"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "inf"
+	  LowerSaturationLimit	  "-inf"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	}
+	Block {
+	  BlockType		  Trigonometry
+	  Name			  "Sine"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [165, 140, 195, 170]
+	  Orientation		  left
+	  Operator		  sin
+	}
+	Block {
+	  BlockType		  Trigonometry
+	  Name			  "Sine1"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [365, 140, 395, 170]
+	  Operator		  sin
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "Speed\nnonlinear"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [165, 59, 195, 91]
+	  ExternalReset		  none
+	  InitialConditionSource  internal
+	  InitialCondition	  "0"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "inf"
+	  LowerSaturationLimit	  "-inf"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [105, 43, 135, 107]
+	  Inputs		  "3"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "negative\nsign"
+	  Position		  [245, 139, 275, 171]
+	  Orientation		  left
+	  Gain			  "-1"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [440, 68, 470, 82]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out2"
+	  Position		  [440, 148, 470, 162]
+	  Port			  "2"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "negative\nsign"
+	  SrcPort		  1
+	  DstBlock		  "Sine"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Speed\nnonlinear"
+	  SrcPort		  1
+	  DstBlock		  "Position\nnonlinear"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Position\nnonlinear"
+	  SrcPort		  1
+	  Points		  [40, 0]
+	  Branch {
+	    DstBlock		    "Gain"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 80]
+	    Branch {
+	      DstBlock		      "negative\nsign"
+	      DstPort		      1
+	    }
+	    Branch {
+	      DstBlock		      "Sine1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Gain"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sine1"
+	  SrcPort		  1
+	  DstBlock		  "Out2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Speed\nnonlinear"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sine"
+	  SrcPort		  1
+	  Points		  [-85, 0; 0, -60]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In2"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+      }
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "S-Function (second order system)"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [245, 364, 335, 406]
+      FunctionName	      "second_order"
+      PortCounts	      "[]"
+      SFunctionModules	      "''"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Scope"
+      Ports		      [1, 0, 0, 0, 0]
+      Position		      [495, 420, 525, 450]
+      Floating		      off
+      Location		      [633, 439, 957, 678]
+      Open		      off
+      Grid		      on
+      TickLabels	      on
+      ZoomMode		      on
+      TimeRange		      "auto"
+      YMin		      "0"
+      YMax		      "180"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitMaxRows	      on
+      MaxRows		      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Single\nintegrators"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [245, 226, 335, 264]
+      ShowPortLabels	      on
+      System {
+	Name			"Single\nintegrators"
+	Location		[472, 376, 952, 624]
+	Open			off
+	ToolBar			on
+	StatusBar		off
+	ScreenColor		white
+	PaperOrientation	landscape
+	PaperPositionMode	auto
+	PaperType		usletter
+	PaperUnits		inches
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [25, 38, 55, 52]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain1"
+	  Position		  [225, 110, 280, 160]
+	  Orientation		  left
+	  Gain			  "2"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain2"
+	  Position		  [230, 189, 285, 221]
+	  Orientation		  left
+	  Gain			  "2"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain3"
+	  Position		  [90, 25, 145, 65]
+	  Gain			  "4"
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "Position"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [350, 40, 380, 70]
+	  ExternalReset		  none
+	  InitialConditionSource  internal
+	  InitialCondition	  "0"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "inf"
+	  LowerSaturationLimit	  "-inf"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "Speed"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [255, 40, 285, 70]
+	  ExternalReset		  none
+	  InitialConditionSource  internal
+	  InitialCondition	  "0"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "inf"
+	  LowerSaturationLimit	  "-inf"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  Ports			  [3, 1, 0, 0, 0]
+	  Position		  [185, 39, 205, 71]
+	  Inputs		  "+--"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [425, 48, 455, 62]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Gain3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Speed"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain1"
+	  SrcPort		  1
+	  Points		  [-50, 0]
+	  DstBlock		  "Sum"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Speed"
+	  SrcPort		  1
+	  Points		  [30, 0]
+	  Branch {
+	    DstBlock		    "Position"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 80]
+	    DstBlock		    "Gain1"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Gain2"
+	  SrcPort		  1
+	  Points		  [-75, 0; 0, -150]
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Position"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  Branch {
+	    Points		    [0, 150]
+	    DstBlock		    "Gain2"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Out1"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Gain3"
+	  SrcPort		  1
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      StateSpace
+      Name		      "State-Space"
+      Position		      [245, 156, 335, 194]
+      A			      "[0, 1; -2, -2]"
+      B			      "[0; 4]"
+      C			      "[1, 0]"
+      D			      "0"
+      X0		      "0"
+    }
+    Block {
+      BlockType		      TransferFcn
+      Name		      "Transfer Function"
+      Position		      [245, 15, 335, 55]
+      Numerator		      "4"
+      Denominator	      "[1, 2, 2]"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Vector\n integrator"
+      Ports		      [1, 1, 0, 0, 0]
+      Position		      [245, 295, 335, 335]
+      ShowPortLabels	      on
+      System {
+	Name			"Vector\n integrator"
+	Location		[307, 351, 752, 536]
+	Open			off
+	ToolBar			on
+	StatusBar		off
+	ScreenColor		white
+	PaperOrientation	landscape
+	PaperPositionMode	auto
+	PaperType		usletter
+	PaperUnits		inches
+	Block {
+	  BlockType		  Inport
+	  Name			  "In1"
+	  Position		  [25, 33, 55, 47]
+	  Port			  "1"
+	  PortWidth		  "-1"
+	  SampleTime		  "-1"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Matrix\nGain"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [90, 25, 120, 55]
+	  SourceBlock		  "simulink/Linear/Matrix\nGain"
+	  SourceType		  "Matrix Gain"
+	  K			  "[0; 4]"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Matrix\nGain1"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [245, 110, 275, 140]
+	  Orientation		  left
+	  SourceBlock		  "simulink/Linear/Matrix\nGain"
+	  SourceType		  "Matrix Gain"
+	  K			  "[0, 1; -2, -2]"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Matrix\nGain2"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [335, 35, 365, 65]
+	  SourceBlock		  "simulink/Linear/Matrix\nGain"
+	  SourceType		  "Matrix Gain"
+	  K			  "[1, 0]"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  Ports			  [2, 1, 0, 0, 0]
+	  Position		  [165, 31, 185, 64]
+	  Inputs		  "++"
+	}
+	Block {
+	  BlockType		  Integrator
+	  Name			  "Vector\nIntegrator"
+	  Ports			  [1, 1, 0, 0, 0]
+	  Position		  [245, 35, 275, 65]
+	  ExternalReset		  none
+	  InitialConditionSource  internal
+	  InitialCondition	  "[0 0]"
+	  LimitOutput		  off
+	  UpperSaturationLimit	  "inf"
+	  LowerSaturationLimit	  "-inf"
+	  ShowSaturationPort	  off
+	  ShowStatePort		  off
+	  AbsoluteTolerance	  "auto"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "Out1"
+	  Position		  [390, 43, 420, 57]
+	  Port			  "1"
+	  OutputWhenDisabled	  held
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Matrix\nGain"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "Vector\nIntegrator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Matrix\nGain"
+	  SrcPort		  1
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Vector\nIntegrator"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  Branch {
+	    DstBlock		    "Matrix\nGain2"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 75]
+	    DstBlock		    "Matrix\nGain1"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Matrix\nGain1"
+	  SrcPort		  1
+	  Points		  [-90, 0]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Matrix\nGain2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      ZeroPole
+      Name		      "Zero-Pole"
+      Position		      [245, 86, 335, 124]
+      Zeros		      "[]"
+      Poles		      "[-1+i; -1-i]"
+      Gain		      "4"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Transfer Function outport"
+      Position		      [435, 28, 465, 42]
+      Port		      "1"
+      OutputWhenDisabled      held
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Zero-Pole outport"
+      Position		      [435, 98, 465, 112]
+      Port		      "2"
+      OutputWhenDisabled      held
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "State-Space outport"
+      Position		      [435, 168, 465, 182]
+      Port		      "3"
+      OutputWhenDisabled      held
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Single integrators outport"
+      Position		      [435, 238, 465, 252]
+      Port		      "4"
+      OutputWhenDisabled      held
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Vector integrator outport"
+      Position		      [435, 308, 465, 322]
+      Port		      "5"
+      OutputWhenDisabled      held
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "S-Function outport"
+      Position		      [435, 378, 465, 392]
+      Port		      "6"
+      OutputWhenDisabled      held
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Nonlinear pendulum \noutport"
+      Position		      [490, 478, 520, 492]
+      Port		      "7"
+      OutputWhenDisabled      held
+      InitialOutput	      "[]"
+    }
+    Line {
+      SrcBlock		      "Vector integrator inport"
+      SrcPort		      1
+      DstBlock		      "Vector\n integrator"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "S-Function inport"
+      SrcPort		      1
+      DstBlock		      "S-Function (second order system)"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Single integrators inport"
+      SrcPort		      1
+      DstBlock		      "Single\nintegrators"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Transfer Function inport"
+      SrcPort		      1
+      DstBlock		      "Transfer Function"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Zero-Pole inport\n(looooooooooooooooooooooooooo"
+"ng\nversion)"
+      SrcPort		      1
+      DstBlock		      "Zero-Pole"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "State-Space inport"
+      SrcPort		      1
+      DstBlock		      "State-Space"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Nonlinear pendulum inport 1"
+      SrcPort		      1
+      DstBlock		      "Nonlinear \npendulum"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Nonlinear pendulum inport 2"
+      SrcPort		      1
+      DstBlock		      "Nonlinear \npendulum"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Vector\n integrator"
+      SrcPort		      1
+      DstBlock		      "Vector integrator outport"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Single\nintegrators"
+      SrcPort		      1
+      DstBlock		      "Single integrators outport"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "S-Function (second order system)"
+      SrcPort		      1
+      DstBlock		      "S-Function outport"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "State-Space"
+      SrcPort		      1
+      DstBlock		      "State-Space outport"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Transfer Function"
+      SrcPort		      1
+      DstBlock		      "Transfer Function outport"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Zero-Pole"
+      SrcPort		      1
+      DstBlock		      "Zero-Pole outport"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Nonlinear \npendulum"
+      SrcPort		      1
+      DstBlock		      "Mux"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Nonlinear \npendulum"
+      SrcPort		      2
+      DstBlock		      "Mux"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Mux"
+      SrcPort		      1
+      Points		      [20, 0]
+      Branch {
+	DstBlock		"Nonlinear pendulum \noutport"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -50]
+	DstBlock		"Scope"
+	DstPort			1
+      }
+    }
+  }
+}

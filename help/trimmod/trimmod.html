@@ -1,0 +1,332 @@
+<html>
+
+<head>
+<script language="Javascript">
+function slipInNewDest(cname){ 
+  if ((navigator.appName == 'Microsoft Internet Explorer') && (navigator.appVersion.substring(0,1) == '2' )) {window.location = cname.toLowerCase()+".html";}
+  else {window.document.f2.action=cname.toLowerCase()+".html";}
+}
+</script>
+
+<title>trimmod (Trim Model Toolbox)</title>
+</head>
+
+<body bgcolor="#f0f0f0">
+<a name="137046">
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="baseline" bgcolor="#9bd0e0"><font size="+2">Trim Model Toolbox</font></td>
+    <td valign="baseline" align="right" bgcolor="#9bd0e0"><form name="f2"
+    onSubmit="slipInNewDest(f2.cmdname.value)">
+      <p>&nbsp;&nbsp;<b>Go to function:</b> <input name="cmdname" type="text" size="12"></p>
+    </form>
+    </td>
+    <td valign="baseline" align="right" bgcolor="#9bd0e0">&nbsp;&nbsp;&nbsp;&nbsp;</a><a
+    href="../../search1.html" target="_top">Search</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+    href="../../helpdesk.html" target="_top">Help Desk</a>&nbsp;</td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><font size="+4">trimmod</font> </td>
+    <td valign="baseline" align="right">&nbsp;&nbsp;&nbsp;<a href="#exmpl_sec"><font size="+1">Examples</font></a>&nbsp;&nbsp;&nbsp;<a
+    href="#seeal_sec"><font size="+1">See Also</font></a></td>
+  </tr>
+</table>
+<!-- FNAME:trimmod -->
+
+<p>Find trim point of Simulink system</p>
+
+<p><font size="+2">Syntax</font> 
+
+<ul>
+  <pre>trimmod</pre>
+  <pre>h = trimmod</pre>
+</ul>
+
+<p><font size="+2">Description</font> </p>
+<code>
+
+<p>trimmod </code>finds the trim point (equilibrium) of a Simulink system. When invoked
+without left-hand arguments, <code>trimmod</code> opens a new figure with a graphical user
+interface. The user can load a Simulink system (<code>.mdl</code>), define certain trim
+point requirements and ask <code>trimmod</code> to calculate the corresponding trim point
+variables that are necessary to satisfy the requirements. This trim point is then
+automatically transferred to the &quot;Simulation Parameters \\ Workspace I/O \\ Load from workspace" dialog box
+("Input" and "Initial state") of the
+corresponding Simulink system.</p>
+
+<p>When invoked with a left-hand argument, 
+
+<ul>
+  <pre>h = trimmod</pre>
+</ul>
+
+<p>opens the gui and additionally returns the handle of the figure.</p>
+
+<p><font size="+2">Arguments</font> </p>
+
+<p><code>trimmod</code> does not need any input arguments. The optional output argument is
+the handle of the newly opened figure.</p>
+
+<p><a name="exmpl_sec"></a><font size="+2">Example</font> 
+
+<ul>
+  <li>Invoke the graphical user interface: <code>trimmod</code></li>
+  <li>Open the Simulink system named <code>trimtest.mdl</code>: <em>File; Open Model;
+    trimtest.mdl</em> </li>
+  <li>Load the trim point from the file <code>trimtest.mat</code>: <em>File; Load Trim Point;
+    trimtest.mat</em></li>
+  <li>Check everything in one view: <em>Action; Overview</em></li>
+  <li>Trim the system: <em>Action; Trim</em></li>
+  <li>Simulate the system using Simulink</li>
+  <li>Modify the trim point using the graphical user interface</li>
+  <li>Save the new trim point:<em> File; Save Trim point in trimtest.mat</em></li>
+  <li>Trim again, simulate again, ...</li>
+</ul>
+
+<p><font size="+2">Menu</font> </p>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <td width="209"><em>File; Open Model</em></td>
+    <td>Open a Simulink system via file select dialog box.</td>
+  </tr>
+  <tr>
+    <td width="209"><em>File; Load Trim Point</em></td>
+    <td>Load a trim point that has been previously saved, via file select dialog box.</td>
+  </tr>
+  <tr>
+    <td width="209"><em>File; Save Trim Point in ...</em></td>
+    <td>Save current trim point in a <code>.mat</code>-file whose name is the name of the
+    current Simulink system. It might be useful to save a newly defined trim point before
+    calling the trim algorithm because trim requirements and trim variables are modified by
+    the trim algorithm. (see <em>Action; Untrim</em>) </td>
+  </tr>
+  <tr>
+    <td width="209"><em>File; Save Trim Point as</em></td>
+    <td>Save current trim point via file select dialog box</td>
+  </tr>
+  <tr>
+    <td width="209"><em>File; Exit TrimMod</em></td>
+    <td>Game over. Ask user if he wants to save current trim point.</td>
+  </tr>
+  <tr>
+    <td width="209"><em>Action; Overview</em></td>
+    <td>Display an overview over all inputs, states, state derivatives, and outputs along with
+    their pre- and post-trim values and the information, whether they are trim variable or
+    trim requirements. </td>
+  </tr>
+  <tr>
+    <td width="209"><em>Action; Trim</em></td>
+    <td>Trim current Simulink system using current trim requirements and trim variables. It
+    might be useful to save a newly defined trim point before calling the trim algorithm (see <em>File;
+    Save Trim Point in ...</em>).</td>
+  </tr>
+  <tr>
+    <td width="209"><em>Action; Untrim</em></td>
+    <td>Countermand the effects of the previous trim. If trimming was not successful (because
+    of bad starting guesses, unrealizable trim requirements, or linear dependencies), the trim
+    algorithm aborts and the values in the gui represent the current (possibly totally wrong)
+    state of the algorithm. This error state might be very useful for the analysis of trim
+    problems, but a reload of the original trim point (via <em>Load Trim Point</em> or <em>Untrim</em>)
+    might be necessary prior to the next trim cycle.</td>
+  </tr>
+  <tr>
+    <td width="209"><em>Options; Show Tooltips</em></td>
+    <td>Tooltips are very useful for the inexperienced user, but can become quite annoying
+    after a while. Therefore, they can be switched off via a check button.</td>
+  </tr>
+  <tr>
+    <td width="209"><em>Help; Help on TrimMod</em></td>
+    <td>This manual.</td>
+  </tr>
+  <tr>
+    <td width="209"><em>Help; About TrimMod</em></td>
+    <td>The usual &quot;about'-information: version, copyright, author, ...</td>
+  </tr>
+</table>
+
+<p><font size="+2">Algorithm</font></p>
+
+<p>A nonlinear time invariant system can be described via its differential equation system</p>
+
+<p align="center"><strong>d</strong> = <strong>f</strong> (<strong>x</strong>, <strong>u</strong>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (1)</p>
+
+<p>and its output equation system</p>
+
+<p align="center"><strong>y</strong> = <strong>g</strong> (<strong>x</strong>,<strong> u</strong>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2)</p>
+
+<p>where <strong>u</strong> is the input vector, <strong>x</strong> is the state vector, <strong>d</strong>
+= d<strong>x</strong>/dt is the time derivative of the state vector, <strong>y</strong> is
+the output vector, and <strong>f</strong> and <strong>g</strong> are nonlinear vector
+functions, evaluated every simulation time step. State vector <strong>x</strong> and input
+vector <strong>u</strong> are the independent variables on the right-hand side of the
+equations. Both vectors can be combined into a generalized input vector&nbsp;<strong>xu</strong>
+= [<strong>x</strong>; <strong>u</strong>]. Derivative vector <strong>d</strong> and
+output vector <strong>y</strong> are the left-hand side results of the function evaluations. They can be
+combined into the generalized output vector <strong>dy</strong> = [<strong>d</strong>; <strong>y</strong>].</p>
+
+<p>Both equation systems can then be combined into</p>
+
+<p align="center"><strong>dy</strong> = <strong>h</strong> (<strong>xu</strong>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (3)</p>
+
+<p>where <strong>h</strong> = [<strong>f</strong>; <strong>g</strong>] is the generalized
+system vector function.</p>
+
+<p>To start a simulation, <u>all</u> elements of the generalized input vector <strong>xu</strong>
+(the complete <strong>x</strong> and <strong>u</strong> vectors) have to be known for the
+first evaluations of (3). Unfortunately, the trim point is often defined as a mixture of <strong>u</strong>,
+<strong>x</strong>, <strong>d</strong>, and <strong>y</strong>: The initial speed
+(<strong>x</strong>) of a car
+might be known, but not the corresponding engine power or the accelerator angle (<strong>u</strong>)
+for no acceleration (<strong>d</strong>). The radius of
+the curve might be predefined, but not the corresponding turning wheel angle, ...
+Usually the user initially defines <em>some</em> elements of the generalized output vector <strong>dy</strong>
+that have to be satisfied, and <em>some</em> elements of the generalized input vector <strong>xu</strong>
+that are known a priori. The other (unknown) elements of the generalized input vector <strong>xu</strong>
+have to be found by the trim algorithm. The unknown elements of the generalized output
+vector<strong> dy</strong> can then easily be calculated via equation (3), if <strong>xu</strong>
+is completely known.</p>
+
+<p>Both generalized vectors can therefore be split up into a known (subscript &quot;k&quot;)
+and an unknown (subscript &quot;n&quot;) part:</p>
+
+<p align="center"><strong>dy</strong> = [<strong>dy_k</strong>; <strong>dy_n</strong>]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (4)</p>
+
+<p align="center"><strong>xu</strong> = [<strong>xu_k</strong>; <strong>xu_n</strong>]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (5)</p>
+
+<p>Accordingly, equation (3) too can be split up into two (vector) equations, one for the
+predefined elements of <strong>dy</strong> and one for the unknowns:</p>
+
+<p align="center"><strong>dy_k</strong> = <strong>h_k</strong> (<strong>xu</strong>) = <strong>h_k</strong>
+([<strong>xu_k</strong>;<strong> xu_n</strong>])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (3k)</p>
+
+<p align="center"><strong>dy_n</strong> = <strong>h_n</strong> (<strong>xu</strong>) = <strong>h_n</strong>
+([<strong>xu_k</strong>;<strong> xu_n</strong>])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (3n)</p>
+
+<p>The trim algorithms now has to solve the nonlinear equation system (3k) with respect to
+the unknown vector <strong>xu_n</strong>&nbsp; (called the <em>trim variables</em>
+vector), while the vector <strong>dy_k</strong> is called the <em>trim requirements</em>
+vector.</p>
+
+<table border="1" cellpadding="5">
+  <tr>
+    <td width="182">Trim requirements <strong>dy_k</strong></td>
+    <td>Those (known) elements of the generalized output vector <strong>dy</strong> that have
+    to be satisfied</td>
+  </tr>
+  <tr>
+    <td width="182">Trim variables <strong>xu_n</strong></td>
+    <td>Those (unknown) elements of the generalized input vector <strong>xu</strong> that the
+    trim algorithm is free to vary</td>
+  </tr>
+</table>
+
+<p>For a unique solution of equation (3k) the number of (unknown) trim variables (<code>length
+(xu_n)</code>) has to equal the number of equations, given by the number of trim
+requirements&nbsp; (<code>length (dy_k)</code>).</p>
+
+<p>If this prerequisite is fulfilled, <code>trimmod</code> (the graphical user interface)
+calls <code>jj_trim</code> (the actual trim algorithm).&nbsp;</p>
+
+<p>As shown in Figure 1 below, the first step of <code>jj_trim</code>&nbsp; is
+to put
+in the initial guess of the trim variable vector <strong>xu_n_old</strong>  on the right
+hand side
+of equation (3k) and to check whether the trim requirement vector <strong>dy_k_trim</strong>
+is already met by<strong> </strong><strong>dy_k_old</strong>. As this is usually not the case, a modified multidimensional
+Newton-Raphson-algorithm is used to iteratively find new trim variable vectors <strong>xu_n_new</strong>
+<b> </b>
+that - hopefully - finally approach the sought <strong>xu_n_trim</strong>.&nbsp;</p>
+
+<p align="center"><img border="0" src="trimmod.gif" width="537" height="397"></p>
+
+<p align="center">Figure 1&nbsp; One-dimensional Newton-Raphson step</p>
+
+<p>Newton-Raphson relies on the local derivatives which can graphically be
+represented as a tangent hyperplane
+in the multidimensional case.
+The linearization routine <code>jj_lin </code>finds the gradients of this tangent
+hyperplane at <strong>xu_n_old</strong>  and returns a sensitivity matrix (Jacobian-matrix) <strong>jaco</strong>,
+which represents the linear relation</p>
+
+<p align="center"><strong>delta_d</strong><strong>y_k</strong> = <strong>jaco * </strong><strong>delta_xu_n</strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (6)</p>
+
+<p>of&nbsp; the trim requirement error</p>
+
+<p align="center"><strong>delta_dy_k</strong> =<b> </b><strong>dy_k</strong><b>_trim
+</b><strong>-</strong><b> </b><strong>dy_k</strong><b>_old</b><strong> </strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (7)</p>
+
+<p>with respect to the trim variable correction</p>
+
+<p align="center"><strong>delta_xu_n</strong> =<b> xu_n_new </b><strong>-</strong><b>
+xu_n_old</b><strong> </strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (8)</p>
+
+<p>A singular system decomposition (singular values and singular vectors) of the
+sensitivity matrix <strong>jaco</strong> is done, in order to find trim variables that
+have no influence on any trim requirement, trim requirements that cannot be influenced by
+any trim variable, and linear dependencies of trim variables or trim requirements. One or
+more singular values of zero indicate a wrong choice of trim requirements and/or trim
+variables. The corresponding singular vectors clearly show <em>which</em> trim
+requirements and trim variables are responsible for the rank deficiency. This detailed
+information can then be used to chose those trim requirements and trim variables that
+correctly describe the desired trim state.</p>
+
+<p>If the sensitivity matrix <strong>jaco</strong> has full rank (is non-singular), the
+linear equation system (6) can be solved:</p>
+
+<p align="center"><strong>delta_xu_n</strong> = <strong>jaco \ delta_dy_k</strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (9)</p>
+
+<p>and equation (8) can be used to find the next solution vector:</p>
+
+<p align="center"><b>xu_n_new</b> =<b>&nbsp; xu_n_old + </b><strong>delta_xu_n</strong><strong>
+</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (10)</p>
+
+<p><a name="seeal_sec"></a><font size="+2">See Also</font> </p>
+
+<p><code><a href="jj_trim.html">jj_trim</a>&nbsp; </code>Helper function, that does the
+actual trimming</p>
+<code>
+
+<p><a href="jj_lin.html">jj_lin</a>&nbsp;&nbsp; </code>Helper function, that
+linearizes a subsystem of a Simulink system</p>
+
+<code>
+
+<p><a href="../simulink/ug/trim.html">trim</a>&nbsp;&nbsp;&nbsp;&nbsp; </code>The trim
+function of the Mathworks</p>
+
+<p><a name="76512"><font size="+2">References</font> </a></p>
+
+<p>[1]&nbsp;&nbsp; <a href="http://buchholz.hs-bremen.de">Buchholz, Jörg J.</a>,
+<a href="http://www.hs-bremen.de"> Hochschule Bremen</a>, 2000. </p>
+
+<p>[2]&nbsp;&nbsp; Mönnich, Wulf, and Buchholz, Jörg J., <i>Simula</i>, IB
+111-91/28, <a href="http://www.fm.bs.dlr.de/flugsystemtechnik">Institute of
+Flight Research</a>, <a href="http://www.dlr.de">DLR</a> <a href="http://www.dlr.de/Braunschweig">Braunschweig</a>,
+1991. </p>
+
+<p>[3]&nbsp;&nbsp; Press, William H., et. al., <i>Numerical Recipes</i>,
+Cambridge, 1988. </p>
+
+<hr>
+
+<p align="center"><br>
+[<a href="../../helpdesk.html" target="_top">Help Desk</a>] <br>
+
+</body>
+</html>

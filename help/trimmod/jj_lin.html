@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<script language="Javascript">
+function slipInNewDest(cname){ 
+  if ((navigator.appName == 'Microsoft Internet Explorer') && (navigator.appVersion.substring(0,1) == '2' )) {window.location = cname.toLowerCase()+".html";}
+  else {window.document.f2.action=cname.toLowerCase()+".html";}
+}
+</script>
+
+<title>jj_lin (Trim Model Toolbox)</title>
+</head>
+
+<body bgcolor="#f0f0f0">
+<a name="137046">
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="baseline" bgcolor="#9bd0e0"><font size="+2">Trim Model Toolbox</font></td>
+    <td valign="baseline" align="right" bgcolor="#9bd0e0"><form name="f2"
+    onSubmit="slipInNewDest(f2.cmdname.value)">
+      <p>&nbsp;&nbsp;<b>Go to function:</b> <input name="cmdname" type="text" size="12"></p>
+    </form>
+    </td>
+    <td valign="baseline" align="right" bgcolor="#9bd0e0">&nbsp;&nbsp;&nbsp;&nbsp;</a><a
+    href="../../search1.html" target="_top">Search</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+    href="../../helpdesk.html" target="_top">Help Desk</a>&nbsp;</td>
+  </tr>
+</table>
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><font size="+4">jj_lin</font> </td>
+    <td valign="baseline" align="right">&nbsp;&nbsp;&nbsp;<a href="#exmpl_sec"><font size="+1">Examples</font></a>&nbsp;&nbsp;&nbsp;<a
+    href="#seeal_sec"><font size="+1">See Also</font></a></td>
+  </tr>
+</table>
+<!-- FNAME:jj_lin -->
+
+<p>Subsystem linearisation of a nonlinear ordinary differential equation system
+(helper function of <code><a href="trimmod.html">trimmod</a></code>)</p>
+
+<p><font size="+2">Syntax</font> 
+
+<ul>
+  <p>&nbsp;<code>jaco = jj_lin (sys, x_u, n_x, i_x_u, i_dy)</code></p>
+  <p>&nbsp;<code>jaco = jj_lin (sys, x_u, n_x, i_x_u, i_dy, del_x_u)</code></p>
+</ul>
+
+<p><font size="+2">Description</font> </p>
+<p><code>jaco = jj_lin (sys, x_u, n_x, i_x_u, i_dy) </code>linearizes the system
+with the name <code>sys</code> at the operating point, that is defined by the
+generalized input vector <code>x_u</code>.</p>
+<p><code>n_x</code> is the length of the original state vector <code>x</code>.
+It is needed for the dissassembling of the <code>x_u</code> vector in the
+parameter list of the system calls.</p>
+<p>The matrix <code>jaco</code> only contains the subsystem defined by the index
+vectors <code>i_x_u</code> and <code>i_d_y</code>.</p>
+<p><code>jaco = jj_lin (sys, x_u, n_x, i_x_u, i_dy, del_x_u) </code>additionally
+allows the specification of the perturbation levels <code>del_x_u</code> to be
+used for the gradient calculations.</p>
+
+<p>&nbsp;<a name="seeal_sec"></a><font size="+2">See Also</font> </p>
+
+<p><code><a href="trimmod.html">trimmod</a>&nbsp; </code>Main trim function</p>
+<code>
+
+<p><a href="jj_trim.html">jj_trim</a>&nbsp; </code>Helper function, that does
+the actual trimming</p>
+
+<code>
+
+<p><a href="../simulink/ug/trim.html">trim</a>&nbsp;&nbsp;&nbsp;&nbsp; </code>The trim
+function of the Mathworks</p>
+
+<hr>
+
+<p align="center"><br>
+[<a href="../../helpdesk.html" target="_top">Help Desk</a>] <br>
+
+</body>
+</html>
